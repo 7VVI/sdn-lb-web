@@ -32,11 +32,34 @@ router.beforeEach(async (to, from, next) => {
   // const res: BaseResponse = await HttpManager.getMenu();
   // const newRoutes = generateRouter(res.data);
   // console.log("路由守卫", newRoutes);
- let Menus=routerListFormat(menu);
-  console.log(generateRouter(Menus))
+  let token:string="fhaksfhsd";
+  if(token!=null){
+    let Menus=routerListFormat(menu);
+    let newRoutes= generateRouter(Menus);
+    console.log(newRoutes)
+    newRoutes.map((item)=>{
+      router.addRoute(item as any)
+    })
+    console.log(router.getRoutes())
+    token="";
+    // next({
+    //
+    //   ...to, // next({ ...to })的目的,是保证路由添加完了再进入页面 (可以理解为重进一次)
+    //   replace: true, // 重进一次, 不保留重复历史
+    // })
+  }else{
+    if (to.name == null) {
+      next("/404")
+    }else{
+      next()
+    }
+  }
+
+
   // newRoutes.map((item) => {
   //   router.addRoute(item);
   // });
+
   next(); //前往当前输入的链接所在的页面
 });
 
