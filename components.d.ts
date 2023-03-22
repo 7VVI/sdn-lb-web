@@ -39,5 +39,6 @@ declare module '@vue/runtime-core' {
     NSpace: typeof import('naive-ui')['NSpace']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SubMenu: typeof import('./src/components/sider/SubMenu.vue')['default']
   }
 }

@@ -4,27 +4,25 @@
       <a-layout-sider v-model:collapsed="state.collapsed" collapsible>
         <div class="logo">{{ APP_NAME }}</div>
         <a-menu
-            v-model:selectedKeys="state.selectedKeys"
-            :inline-collapsed="state.collapsed"
-            v-model:openKeys="state.openKeys"
-            theme="dark"
+            v-model:openKeys="openKeys"
+            v-model:selectedKeys="selectedKeys"
             mode="inline"
+            theme="dark"
+            :inline-collapsed="collapsed"
         >
-          <a-sub-menu key="sub1">
-            <template #title>
-              <span>
-                <user-outlined />
-                <span>User</span>
-              </span>
+          <template v-for="item in Menus" :key="item.menue_id">
+            <template v-if="!item.children">
+              <a-menu-item :key="item.menue_id">
+                <template #icon>
+                  <PieChartOutlined />
+                </template>
+                {{ item.title }}
+              </a-menu-item>
             </template>
-
-            <a-menu-item key="3">Tom</a-menu-item>
-          </a-sub-menu>
-
-          <a-menu-item key="9">
-            <file-outlined />
-            <span>File</span>
-          </a-menu-item>
+            <template v-else>
+              <sub-menu :key="item.menue_id" :menu-info="item" />
+            </template>
+          </template>
         </a-menu>
       </a-layout-sider>
       <a-layout>
@@ -86,10 +84,11 @@ import { ref, reactive, watch, onMounted,onBeforeMount } from "vue";
 import { APP_NAME, menu } from "@/enum";
 import Menu=API.Menu;
 import {
-  SettingFilled,
+  PieChartOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons-vue";
+import SubMenu from "@/components/sider/SubMenu.vue";
 
 
 
@@ -115,12 +114,11 @@ const toggleCollapsed = () => {
 let Menus:any=ref(null);
 
 onBeforeMount(() => {
-  console.log("onBeforeMount执行");
   Menus=routerListFormat(menu);
 });
 
 onMounted(()=>{
-  console.log("菜单",Menus)
+
 })
 
 //递归构建菜单
@@ -151,7 +149,6 @@ function routerListFormat(data:Menu[]) {
   }
   return parents;
 }
-
 
 
 </script>
