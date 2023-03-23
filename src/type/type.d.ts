@@ -70,9 +70,8 @@ declare namespace API {
   interface Router{
     path:string,
     name:string,
-    component:string,
-    hidden:boolean,
-    meta?:string,
+    component:any,
+    meta?:any,
     children?:Router[]
   }
 
