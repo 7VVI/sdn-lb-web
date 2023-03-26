@@ -32,11 +32,11 @@ declare namespace API {
    */
   interface Menu {
     //菜单唯一id
-    menue_id:number,
+    menuId:number,
     //菜单顺序
-    menu_order:number,
+    menuOrder:number,
     //子菜单数目
-    sub_count:number,
+    subCount:number,
     //菜单类型 0无子菜单  1有子菜单
     type:number,
     //菜单标题
@@ -56,13 +56,13 @@ declare namespace API {
     //是否隐藏
     hidden:boolean,
     //创建者
-    create_by:string,
+    createBy:string,
     //更新者
-    update_by:string,
+    updateBy:string,
     //创建时间
-    create_time:string,
+    createTime:string,
     //更新时间
-    update_time:string,
+    updateTime:string,
     //子菜单
     children?:Menu[]
   }

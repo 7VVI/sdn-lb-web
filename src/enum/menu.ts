@@ -1,11 +1,11 @@
 // 系统左侧菜单栏
 export const menu: API.Menu[] = [
   {
-    menue_id: 1,
+    menuId: 1,
     //菜单顺序
-    menu_order: 1,
+    menuOrder: 1,
     //子菜单数目
-    sub_count: 0,
+    subCount: 0,
     //菜单类型 0无子菜单  1有子菜单
     type: 0,
     //菜单标题
@@ -13,7 +13,7 @@ export const menu: API.Menu[] = [
     //上级菜单ID
     pid: 0,
     //路由
-    path: "/main",
+    path: "/home/main",
     //图标
     icon: "",
     // 图标颜色
@@ -24,20 +24,20 @@ export const menu: API.Menu[] = [
     component: "main.vue",
     name:"main",
     //创建者
-    create_by: "zhangyh",
+    createBy: "zhangyh",
     //更新者
-    update_by: "zhangyh",
+    updateBy: "zhangyh",
     //创建时间
-    create_time: "",
+    createTime: "",
     //更新时间
-    update_time: "",
+    updateTime: "",
   },
   {
-    menue_id: 2,
+    menuId: 2,
     //菜单顺序
-    menu_order: 2,
+    menuOrder: 2,
     //子菜单数目
-    sub_count: 1,
+    subCount: 1,
     //菜单类型 0无子菜单  1有子菜单
     type: 1,
     //菜单标题
@@ -56,20 +56,20 @@ export const menu: API.Menu[] = [
     component: "status.vue",
     name:"status",
     //创建者
-    create_by: "zhangyh",
+    createBy: "zhangyh",
     //更新者
-    update_by: "zhangyh",
+    updateBy: "zhangyh",
     //创建时间
-    create_time: "",
+    createTime: "",
     //更新时间
-    update_time: "",
+    updateTime: "",
   },
   {
-    menue_id: 3,
+    menuId: 3,
     //菜单顺序
-    menu_order: 3,
+    menuOrder: 3,
     //子菜单数目
-    sub_count: 0,
+    subCount: 0,
     //菜单类型 0无子菜单  1有子菜单
     type: 0,
     //菜单标题
@@ -88,20 +88,20 @@ export const menu: API.Menu[] = [
     component: "host.vue",
     name:"host",
     //创建者
-    create_by: "zhangyh",
+    createBy: "zhangyh",
     //更新者
-    update_by: "zhangyh",
+    updateBy: "zhangyh",
     //创建时间
-    create_time: "",
+    createTime: "",
     //更新时间
-    update_time: "",
+    updateTime: "",
   },
   {
-    menue_id: 4,
+    menuId: 4,
     //菜单顺序
-    menu_order: 4,
+    menuOrder: 4,
     //子菜单数目
-    sub_count: 0,
+    subCount: 0,
     //菜单类型 0无子菜单  1有子菜单
     type: 0,
     //菜单标题
@@ -120,12 +120,12 @@ export const menu: API.Menu[] = [
     component: "switch.vue",
     name:"switch",
     //创建者
-    create_by: "zhangyh",
+    createBy: "zhangyh",
     //更新者
-    update_by: "zhangyh",
+    updateBy: "zhangyh",
     //创建时间
-    create_time: "",
+    createTime: "",
     //更新时间
-    update_time: "",
+    updateTime: "",
   },
 ];

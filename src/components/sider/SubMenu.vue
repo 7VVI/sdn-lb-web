@@ -1,23 +1,22 @@
 <template>
-  <a-sub-menu :key="menuInfo.menue_id" v-bind="$attrs">
+  <a-sub-menu :key="menuInfo.menuId" v-bind="$attrs">
     <template #title>
       <span>
         <MailOutlined />
-        <span>{{ menuInfo.title }}</span>
+        {{menuInfo.title}}
+<!--         <router-link :to="menuInfo.link || menuInfo.path" >{{menuInfo.title}}</router-link>-->
       </span>
     </template>
-    <template v-for="item in menuInfo.children" :key="item.menue_id">
+    <template v-for="item in menuInfo.children" :key="item.menuId">
       <template v-if="!item.hidden">
         <template v-if="!item.children">
-          <a-menu-item :key="item.menue_id">
+          <a-menu-item :key="item.menuId">
             <PieChartOutlined />
-            <span>
-              {{ item.title }}
-            </span>
+            <router-link :to="item.link || item.path" >{{item.title}}</router-link>
           </a-menu-item>
         </template>
         <template v-else> // 递归调用自身组件
-          <sub-menu :menu-info="item" :key="item.menue_id" />
+          <sub-menu :menu-info="item" :key="item.menuId" />
         </template>
       </template>
     </template>

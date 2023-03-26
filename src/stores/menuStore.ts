@@ -11,6 +11,7 @@ export const menuStore = defineStore('sideMenu', {
   state: () => {
     return {
       menu:new Array<API.Menu>(),
+      newRouter:new Array<API.Router>()
     }
   },
   actions:{

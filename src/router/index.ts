@@ -7,6 +7,7 @@ import {menu} from "@/enum";
 import {start, close} from "@/utils/nprogress";
 import {generateRouter, routerListFormat} from "@/utils/MenuToRouter";
 import {menuStore} from "@/stores/menuStore";
+import BaseResponse = API.BaseResponse;
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -22,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/404',
         component: (resolve) => import('@/views/features/404.vue')
-    },
+    }
 ];
 
 const router = createRouter({
@@ -37,28 +38,24 @@ const whiteList = ['/login'] // no redirect whitelist
 router.beforeEach(async (to, from, next) => {
     start()
     const store = menuStore()
-    // const res: BaseResponse = await HttpManager.getMenu();
-    // const newRoutes = generateRouter(res.data);
-    // let token:string="fhaksfhsd";
-    // if(token!=null){
-    let Menus = routerListFormat(menu);
-    let newRoutes = generateRouter(Menus);
-    store.$patch(state => {
-        state.menu = Menus
-    });
-    //
-    //         newRoutes.map((item) => {
-    //             router.addRoute(item as any)
-    //         })
-    //         console.log(router.getRoutes())
-    //         // next({path:to.path})//前往当前输入的链接所在的页面
-    //
-    // next({
-    //     ...to, // next({ ...to })的目的,是保证路由添加完了再进入页面 (可以理解为重进一次)
-    //     replace: true, // 重进一次, 不保留重复历史
-    // })
-
-    next(); //前往当前输入的链接所在的页面
+    if(store.menu.length<1){
+        const res = await HttpManager.getMenu();
+        console.log(res);
+        let Menus = routerListFormat(menu);
+        let newRoutes = generateRouter(Menus);
+        await  store.$patch(state => {
+            state.menu = Menus
+        });
+      await  newRoutes.forEach(item =>{
+            router.addRoute("home",item as any)
+        });
+        next({
+            ...to, // next({ ...to })的目的,是保证路由添加完了再进入页面 (可以理解为重进一次)
+            replace: true, // 重进一次, 不保留重复历史
+        })
+    }else{
+        next()
+    }
 });
 
 router.afterEach(() => {

@@ -11,7 +11,7 @@ function routerListFormat(data:Menu[]) {
     function dataToTree(parents:Menu[], children:Menu[]) {
         parents.map((p) => {
             children.map((c, index) => {
-                if (c.pid === p.menue_id) {
+                if (c.pid === p.menuId) {
                     //如果相同，拷贝children一个新的数组c1
                     let c1 = Object.assign([], children);
                     c1.splice(index, 1); //删除当前元素，获取除当前元素之外的所有子路由元素
@@ -35,8 +35,9 @@ function generateRouter(UserRouter:Menu[]):Router[] {
     let newRouters = UserRouter.map((r) => {
         let routes:Router = {
             path: r.path,
-            name: r.component,
+            name: r.name,
             component: ()=>import(`@/views/${r.name}/index.vue`), //利用字符串模板拼接
+            // component: modules[`@/views/${r.path}/index.vue`], //利用字符串模板拼接
             meta:{
                 hidden: r.hidden
             }
@@ -49,6 +50,7 @@ function generateRouter(UserRouter:Menu[]):Router[] {
     });
     return newRouters;
 }
+
 
 export {generateRouter,routerListFormat}
 //菜单转换路由

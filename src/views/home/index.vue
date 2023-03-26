@@ -10,17 +10,17 @@
             theme="dark"
             :inline-collapsed="collapsed"
         >
-          <template v-for="item in Menus" :key="item.menue_id">
+          <template v-for="item in Menus" :key="item.menuId">
             <template v-if="!item.children">
-              <a-menu-item :key="item.menue_id">
+              <a-menu-item :key="item.menuId">
                 <template #icon>
                   <PieChartOutlined />
                 </template>
-                {{ item.title }}
+                <router-link :to="item.path || item.link" >{{item.title}}</router-link>
               </a-menu-item>
             </template>
             <template v-else>
-              <sub-menu :key="item.menue_id" :menu-info="item" />
+              <sub-menu :key="item.menuId" :menu-info="item" />
             </template>
           </template>
         </a-menu>
@@ -61,17 +61,17 @@
         </a-layout-header>
         <a-layout-content style="margin: 0 16px">
           <a-breadcrumb style="margin: 16px 0">
-            <a-breadcrumb-item>User</a-breadcrumb-item>
-            <a-breadcrumb-item>Bill</a-breadcrumb-item>
+<!--            <a-breadcrumb-item>User</a-breadcrumb-item>-->
+<!--            <a-breadcrumb-item>Bill</a-breadcrumb-item>-->
           </a-breadcrumb>
           <div
-              :style="{ padding: '24px', background: '#fff', minHeight: '360px' }"
+              class="home_context"
+              :style="{ background: '#fff', minHeight: '360px'}"
           >
-            Bill is a cat.{{ APP_NAME }}
-            <a-spin />
+            <router-view/>
           </div>
         </a-layout-content>
-        <a-layout-footer style="text-align: center">
+        <a-layout-footer style="text-align: center;">
           ©2023 Created by zhangyh
         </a-layout-footer>
       </a-layout>
@@ -114,8 +114,8 @@ const store=menuStore()
 let Menus:any=ref(null);
 
 onBeforeMount(() => {
-  // Menus=routerListFormat(menu);
   Menus=store.menu
+  console.log("主页路由",Menus)
 });
 
 onMounted(()=>{
@@ -192,6 +192,17 @@ body {
 
 .setting {
   flex: 1;
+}
+
+.home_context{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow-y:auto;
+}
+
+.ant-layout-footer {
+  padding: 0;
 }
 </style>
       
