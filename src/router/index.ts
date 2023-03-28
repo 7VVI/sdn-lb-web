@@ -43,7 +43,6 @@ router.beforeEach(async (to, from, next) => {
         } else {
             if (store.menu.length < 0 || flag) {
                 let menus = localStorage.getItem("menu");
-                console.log(menus)
                 store.menu = JSON.parse(menus as any);
                 let newRoutes = generateRouter(JSON.parse(menus as any));
                 newRoutes.forEach(item => {

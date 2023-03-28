@@ -3,15 +3,16 @@
     <template #title>
       <span>
         <MailOutlined />
-        {{menuInfo.title}}
-<!--         <router-link :to="menuInfo.link || menuInfo.path" >{{menuInfo.title}}</router-link>-->
+        <span>{{menuInfo.title}}</span>
       </span>
     </template>
     <template v-for="item in menuInfo.children" :key="item.menuId">
       <template v-if="!item.hidden">
         <template v-if="!item.children">
           <a-menu-item :key="item.menuId">
+            <template #icon>
             <PieChartOutlined />
+            </template>
             <router-link :to="item.link || item.path" >{{item.title}}</router-link>
           </a-menu-item>
         </template>
