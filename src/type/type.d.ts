@@ -56,13 +56,13 @@ declare namespace API {
     //是否隐藏
     hidden:boolean,
     //创建者
-    createBy:string,
+    createBy?:string,
     //更新者
-    updateBy:string,
+    updateBy?:string,
     //创建时间
-    createTime:string,
+    createTime?:string,
     //更新时间
-    updateTime:string,
+    updateTime?:string,
     //子菜单
     children?:Menu[]
   }

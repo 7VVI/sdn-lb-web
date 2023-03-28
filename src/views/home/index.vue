@@ -115,7 +115,6 @@ let Menus:any=ref(null);
 
 onBeforeMount(() => {
   Menus=store.menu
-  console.log("主页路由",Menus)
 });
 
 onMounted(()=>{

@@ -22,6 +22,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         path: '/404',
+        name: "404",
         component: (resolve) => import('@/views/features/404.vue')
     }
 ];
@@ -31,32 +32,36 @@ const router = createRouter({
     routes,
 });
 
-
+let flag = true;
 const whiteList = ['/login'] // no redirect whitelist
 
-
 router.beforeEach(async (to, from, next) => {
-    start()
-    const store = menuStore()
-    if(store.menu.length<1){
-        const res = await HttpManager.getMenu();
-        console.log(res);
-        let Menus = routerListFormat(menu);
-        let newRoutes = generateRouter(Menus);
-        await  store.$patch(state => {
-            state.menu = Menus
-        });
-      await  newRoutes.forEach(item =>{
-            router.addRoute("home",item as any)
-        });
-        next({
-            ...to, // next({ ...to })的目的,是保证路由添加完了再进入页面 (可以理解为重进一次)
-            replace: true, // 重进一次, 不保留重复历史
-        })
-    }else{
-        next()
+        start();
+        const store = menuStore();
+        if (to.name == "login") {
+            next()
+        } else {
+            if (store.menu.length < 0 || flag) {
+                let menus = localStorage.getItem("menu");
+                console.log(menus)
+                store.menu = JSON.parse(menus as any);
+                let newRoutes = generateRouter(JSON.parse(menus as any));
+                newRoutes.forEach(item => {
+                    router.addRoute("home", item as any)
+                });
+                flag = false;
+                store.routes = [];
+                next({
+                    ...to, // next({ ...to })的目的,是保证路由添加完了再进入页面 (可以理解为重进一次)
+                    replace: true, // 重进一次, 不保留重复历史
+                })
+            } else {
+                next();
+            }
+        }
     }
-});
+)
+;
 
 router.afterEach(() => {
     // 在即将进入新的页面组件前，关闭掉进度条

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import BaseResponse = FasLB.BaseResponse;
+import BaseResponse = API.BaseResponse;
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 // 自定义 axios 实例
 const request = axios.create({
@@ -9,6 +9,7 @@ const request = axios.create({
             : "http://localhost:5001/api",
 });
 
+axios.defaults.timeout=3000   //设置超时时间为3000ms
 request.defaults.withCredentials = true;
 
 // 添加请求拦截器
