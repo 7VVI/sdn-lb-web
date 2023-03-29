@@ -44,7 +44,7 @@
                 autocomplete="off"
               />
               <a-image
-                  style="margin-left: 20px"
+                  style="margin-left: 20px;height:calc(100vh - 720px);"
                   :preview="false"
               :width="180"
                 class="verifyImg"
