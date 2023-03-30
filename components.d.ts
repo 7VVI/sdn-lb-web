@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     ASpin: typeof import('ant-design-vue/es')['Spin']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
+    Card: typeof import('./src/components/card/index.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCol: typeof import('naive-ui')['NCol']
     NForm: typeof import('naive-ui')['NForm']

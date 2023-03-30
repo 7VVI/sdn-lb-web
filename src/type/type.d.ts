@@ -26,6 +26,12 @@ declare namespace API {
     ip?: string;
   };
 
+  type device={
+    deviceName:String,
+    deviceNum:number,
+    deviceImgSrc:any
+  }
+
 
   /**
    * 菜单类型
