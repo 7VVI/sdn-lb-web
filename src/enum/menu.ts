@@ -45,7 +45,7 @@ export const menu: API.Menu[] = [
     //上级菜单ID
     pid: 0,
     //路由
-    path: "/status",
+    path: "/ovswitch",
     //图标
     icon: "",
     // 图标颜色
@@ -53,7 +53,7 @@ export const menu: API.Menu[] = [
     //是否隐藏
     hidden: false,
     //组件
-    component: "status.vue",
+    component: "ovswitch.vue",
     name:"status",
     //创建者
     createBy: "zhangyh",

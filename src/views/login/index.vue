@@ -134,7 +134,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  background-image: url(@/assets/background/b3.jpg);
+  background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+  /*background-image: url(@/assets/background/b3.jpg);*/
 }
 
 .login_container {
@@ -158,6 +159,9 @@ body {
 .project_name {
   position: relative;
   top: 20%;
+  font-weight: bold;
+  font-size: xxx-large;
+  color: #369abe;
 }
 
 .login_form {

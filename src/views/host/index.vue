@@ -15,6 +15,8 @@ body{
 }
 
 .context{
-  background-color: aqua;
+  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+  width: 100%;
+  height: 100vh;
 }
 </style>

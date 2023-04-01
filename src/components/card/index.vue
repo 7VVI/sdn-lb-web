@@ -1,43 +1,53 @@
 <template>
 
-    <div class="trend_card">
-      <div class="flowers"></div>
-      <div class="flowers_2"></div>
-      <div class="device_name"><span>{{ device.deviceName }}</span></div>
-      <div class="device_num"><span>{{device.deviceNum}}</span></div>
-      <div class="device_image"><img :src="device.deviceImgSrc" alt="xx" class="image_device"></div>
-    </div>
+  <div class="trend_card" :style="styleProp">
+    <div class="flowers"></div>
+    <div class="flowers_2"></div>
+    <div class="device_name"><span>{{ device.deviceName }}</span></div>
+    <div class="device_num"><span>{{ device.deviceNum }}</span></div>
+    <div class="device_image"><img :src="device.deviceImgSrc" alt="xx" class="image_device"></div>
+  </div>
 
 </template>
 
 <script lang="ts" setup>
 import type {PropType} from "vue";
-import {inject} from 'vue'
+import {inject, toRefs} from 'vue'
 
-defineProps({
-
+const deviceInfo=defineProps({
+  device: {
+    type: Object as PropType<API.device>,
+    default: () => {
+    }
+  },
+  styleProp: {
+    type: Object as () => Record<string, string>,
+    required: true,
+    default:"@/assets/img/pc.svg"
+  },
 });
 
-let device = inject('device') as API.device
+const {device}=toRefs(deviceInfo)
+
+
 </script>
 
 <style scoped>
 
 
-
-.trend_card{
+.trend_card {
   position: relative;
   padding: 10px 20px;
   height: 130px;
-  margin-right:20px;
+  margin-right: 20px;
   border-radius: 10px;
   flex: 1;
-  background-color: rgba(79, 176, 233, 0.9);
+  background-color: rgba(79, 176, 233, 0.95);
   display: flex;
   overflow: hidden;
 }
 
-.flowers{
+.flowers {
   background-color: rgba(241, 236, 232, 0.39);
   width: 100px;
   height: 50px;
@@ -47,7 +57,7 @@ let device = inject('device') as API.device
   border-radius: 50px 50px 0 0;
 }
 
-.flowers_2{
+.flowers_2 {
   background-color: rgba(211, 243, 236, 0.3);
   width: 60px;
   height: 30px;
@@ -57,7 +67,7 @@ let device = inject('device') as API.device
   border-radius: 30px 30px 0 0;
 }
 
-.device_name{
+.device_name {
   font-weight: bold;
   display: inline;
   font-size: 22px;
@@ -70,7 +80,7 @@ let device = inject('device') as API.device
   text-align: center;
 }
 
-.device_num{
+.device_num {
   font-weight: bold;
   display: flex;
   font-size: 25px;
@@ -84,12 +94,12 @@ let device = inject('device') as API.device
   align-content: center;
 }
 
-.device_image{
-  width: 30%;
-  background-color:rgba(215, 236, 252, 0.2);
+.device_image {
+  width: 20%;
+  background-color: rgba(215, 236, 252, 0.2);
   align-self: center;
-  position: relative;
-  right: 5%;
+  position: absolute;
+  right: 15%;
   height: 40%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -99,7 +109,7 @@ let device = inject('device') as API.device
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
 }
 
-.image_device{
+.image_device {
   width: 100%;
   height: 100%;
 }

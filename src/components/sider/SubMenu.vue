@@ -1,8 +1,10 @@
 <template>
   <a-sub-menu :key="menuInfo.menuId" v-bind="$attrs">
+    <template #icon>
+      <i :class='`iconfont ${menuInfo.icon}`' :style="`color: ${menuInfo.iconColor}`"></i>
+    </template>
     <template #title>
       <span>
-        <MailOutlined />
         <span>{{menuInfo.title}}</span>
       </span>
     </template>
@@ -11,12 +13,12 @@
         <template v-if="!item.children">
           <a-menu-item :key="item.menuId">
             <template #icon>
-            <PieChartOutlined />
+              <i :class='`iconfont ${item.icon}`' :style="`color: ${item.iconColor}`"></i>
             </template>
             <router-link :to="item.link || item.path" >{{item.title}}</router-link>
           </a-menu-item>
         </template>
-        <template v-else> // 递归调用自身组件
+        <template v-else>
           <sub-menu :menu-info="item" :key="item.menuId" />
         </template>
       </template>

@@ -33,24 +33,64 @@ function routerListFormat(data:Menu[]) {
 //转化为路由表格式
 function generateRouter(UserRouter:Menu[]):Router[] {
     let newRouters = UserRouter.map((r) => {
-        let routes:Router = {
-            path: r.path,
-            name: r.name,
-            component: ()=>import(`@/views/${r.name}/index.vue`), //利用字符串模板拼接
-            // component: modules[`@/views/${r.path}/index.vue`], //利用字符串模板拼接
-            meta:{
-                hidden: r.hidden
+            let routes:Router = {
+                path: r.path,
+                name: r.name,
+                component: ()=>import(`@/views/${r.name}/index.vue`), //利用字符串模板拼接
+                meta:{
+                    hidden: r.hidden,
+                    type:r.type
+                }
+            };
+            if (r.children) {
+                //如果该结点有孩子，则继续递归
+                routes.children = generateRouter(r.children);
             }
-        };
-        if (r.children) {
-            //如果该结点有孩子，则继续递归
-            routes.children = generateRouter(r.children);
-        }
-        return routes;
+            return routes;
     });
     return newRouters;
 }
 
+function processArray(arr:Router[]):Router[] {
+    let result:Router[] = [];
+    for (let i = 0; i < arr.length; i++) {
+        let obj = arr[i];
+        if (obj.meta && obj.meta.type === 0) {
+            result.push(obj);
+        } else if (obj.meta && obj.meta.type === 1) {
+            if (obj.children && obj.children.length > 0) {
+                let childrenResult = processArray(obj.children);
+                result = result.concat(childrenResult);
+            } else {
+                delete obj.meta.type;
+                result.push(obj);
+            }
+        }
+    }
+    return result;
+}
 
-export {generateRouter,routerListFormat}
+function filterType(arr:Router[]):Router[] {
+    let result:Router[] = [];
+
+    function traverse(currentArr:Router[]) {
+        for (let i = 0; i < currentArr.length; i++) {
+            if (currentArr[i].meta.type === 0) {
+                let newItem = { ...currentArr[i] };
+                if (currentArr[i].children) {
+                    newItem.children = traverse(currentArr[i].children);
+                }
+                result.push(newItem);
+            } else if (currentArr[i].meta.type === 1 && currentArr[i].children) {
+                traverse(currentArr[i].children);
+            }
+        }
+    }
+
+    traverse(arr);
+    return result;
+}
+
+
+export {generateRouter,routerListFormat,processArray,filterType}
 //菜单转换路由

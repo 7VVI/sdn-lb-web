@@ -14,7 +14,7 @@
             <template v-if="!item.children">
               <a-menu-item :key="item.menuId">
                 <template #icon>
-                  <PieChartOutlined />
+                  <i :class='`iconfont ${item.icon}`' :style="`color: ${item.iconColor}`"></i>
                 </template>
                 <router-link :to="item.path || item.link" >{{item.title}}</router-link>
               </a-menu-item>
@@ -59,14 +59,15 @@
             </div>
           </div>
         </a-layout-header>
-        <a-layout-content style="margin: 0 16px">
-          <a-breadcrumb style="margin: 16px 0">
-<!--            <a-breadcrumb-item>User</a-breadcrumb-item>-->
-<!--            <a-breadcrumb-item>Bill</a-breadcrumb-item>-->
+        <a-layout-content>
+          <a-breadcrumb style="background-color: white;">
+            <span>面包屑</span>
+            <a-breadcrumb-item>User</a-breadcrumb-item>
+            <a-breadcrumb-item>Bill</a-breadcrumb-item>
           </a-breadcrumb>
           <div
               class="home_context"
-              :style="{ background: '#fff', minHeight: '360px'}"
+              :style="{ background: 'rgb(240, 242, 245)', minHeight: '360px'}"
           >
             <router-view/>
           </div>
@@ -132,8 +133,8 @@ body {
 
 .context {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   background-color: beige;
@@ -194,11 +195,9 @@ body {
 }
 
 .home_context{
-  width: 100%;
-  height: 100%;
   padding: 0;
-  display: flex;
-  overflow-y:auto;
+  margin: 10px;
+  box-sizing: border-box;
 }
 
 .ant-layout-footer {

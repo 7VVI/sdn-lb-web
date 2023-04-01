@@ -1,10 +1,10 @@
 <template>
-  <router-view/>
+ 流表
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "index.vue"
 }
 </script>
 

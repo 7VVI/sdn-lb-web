@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3773077 */
+  src: url('iconfont.woff2?t=1680334200703') format('woff2'),
+       url('iconfont.woff?t=1680334200703') format('woff'),
+       url('iconfont.ttf?t=1680334200703') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gaojing:before {
+  content: "\e608";
+}
+
+.icon-jiaohuanji:before {
+  content: "\e623";
+}
+
+.icon-SDNkongzhiqi:before {
+  content: "\e67b";
+}
+
+.icon-diannao:before {
+  content: "\eac0";
+}
+
+.icon-manage:before {
+  content: "\e603";
+}
+
+.icon-Storage2:before {
+  content: "\e604";
+}
+
+.icon-out:before {
+  content: "\e605";
+}
+
+.icon-shouye:before {
+  content: "\e62c";
+}
+
+.icon-shouye1:before {
+  content: "\e607";
+}
+
+.icon-shouye2:before {
+  content: "\e601";
+}
+
+.icon-f_device_maintainence:before {
+  content: "\e7df";
+}
+
+.icon-shouye3:before {
+  content: "\e697";
+}
+
+.icon-maint_mgt:before {
+  content: "\e67f";
+}
+
+.icon-fuwurizhi:before {
+  content: "\e60e";
+}
+
+.icon-rizhi:before {
+  content: "\e602";
+}
+
+.icon-diqiu:before {
+  content: "\e60a";
+}
+
+.icon-wangluo1:before {
+  content: "\e687";
+}
+
+.icon-data-management:before {
+  content: "\e93c";
+}
+
+.icon-kuandaizhongpin:before {
+  content: "\e616";
+}
+
+.icon-yingyong:before {
+  content: "\e600";
+}
+
+.icon-xitong:before {
+  content: "\e617";
+}
+

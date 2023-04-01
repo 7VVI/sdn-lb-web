@@ -5,10 +5,10 @@ import Menu = API.Menu;
 import Router = API.Router;
 import {menu} from "@/enum";
 import {start, close} from "@/utils/nprogress";
-import {generateRouter, routerListFormat} from "@/utils/MenuToRouter";
+import {filterType, generateRouter, processArray, routerListFormat} from "@/utils/MenuToRouter";
 import {menuStore} from "@/stores/menuStore";
 import BaseResponse = API.BaseResponse;
-
+// declare var require :any;
 const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
@@ -49,7 +49,9 @@ router.beforeEach(async (to, from, next) => {
                 let menus = localStorage.getItem("menu");
                 store.menu = JSON.parse(menus as any);
                 let newRoutes = generateRouter(JSON.parse(menus as any));
-                newRoutes.forEach(item => {
+               let rt= filterType(newRoutes)
+                console.log(JSON.stringify(rt))
+                rt.forEach(item => {
                     router.addRoute("home", item as any)
                 });
                 flag = false;
