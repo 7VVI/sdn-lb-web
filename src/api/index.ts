@@ -28,6 +28,13 @@ const HttpManager = {
             url: "/user/verifyCode",
             method: "get"
         })
+    },
+
+    getFileContent(){
+        return request({
+            url:"/file",
+            responseType: 'blob' // 指定响应类型为二进制数据
+        })
     }
 
 }

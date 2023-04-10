@@ -29,8 +29,12 @@ declare module '@vue/runtime-core' {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     ASpin: typeof import('ant-design-vue/es')['Spin']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
+    ATable: typeof import('ant-design-vue/es')['Table']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
+    ATag: typeof import('ant-design-vue/es')['Tag']
     Card: typeof import('./src/components/card/index.vue')['default']
+    Log: typeof import('./src/components/log/index.vue')['default']
+    LogDashbord: typeof import('./src/components/log/logDashbord.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCol: typeof import('naive-ui')['NCol']
     NForm: typeof import('naive-ui')['NForm']
@@ -40,6 +44,7 @@ declare module '@vue/runtime-core' {
     NSpace: typeof import('naive-ui')['NSpace']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ServiceTime: typeof import('./src/components/system/ServiceTime.vue')['default']
     SubMenu: typeof import('./src/components/sider/SubMenu.vue')['default']
   }
 }

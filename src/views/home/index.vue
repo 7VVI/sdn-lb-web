@@ -112,7 +112,7 @@ const toggleCollapsed = () => {
   state.openKeys = state.collapsed ? [] : state.preOpenKeys;
 };
 const store=menuStore()
-let Menus:any=ref(null);
+let Menus:any=ref();
 
 onBeforeMount(() => {
   Menus=store.menu

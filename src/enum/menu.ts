@@ -21,7 +21,7 @@ export const menu: API.Menu[] = [
     //是否隐藏
     hidden: false,
     //组件
-    component: "main.vue",
+    component: "index.vue",
     name:"main",
     //创建者
     createBy: "zhangyh",

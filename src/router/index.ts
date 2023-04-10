@@ -1,18 +1,18 @@
 import {createRouter, createWebHistory} from "vue-router";
 import type {RouteRecordRaw} from "vue-router";
-import {HttpManager} from "@/api";
-import Menu = API.Menu;
-import Router = API.Router;
-import {menu} from "@/enum";
 import {start, close} from "@/utils/nprogress";
-import {filterType, generateRouter, processArray, routerListFormat} from "@/utils/MenuToRouter";
 import {menuStore} from "@/stores/menuStore";
-import BaseResponse = API.BaseResponse;
-// declare var require :any;
+import menu from "@/utils/MenuUtils";
+
+declare var require: any;
 const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
-        name: "login",
+        redirect: "/login"
+    },
+    {
+        path: "/login",
+        name: "Login",
         component: () => import("@/views/login/index.vue"),
     },
     {
@@ -37,25 +37,21 @@ const router = createRouter({
 });
 
 let flag = true;
-const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
         start();
         const store = menuStore();
         if (to.name == "login") {
-            next()
+            next({ name: 'login' });
         } else {
-            if (store.menu.length < 0 || flag) {
-                let menus = localStorage.getItem("menu");
-                store.menu = JSON.parse(menus as any);
-                let newRoutes = generateRouter(JSON.parse(menus as any));
-               let rt= filterType(newRoutes)
-                console.log(JSON.stringify(rt))
-                rt.forEach(item => {
-                    router.addRoute("home", item as any)
+
+            if (flag) {
+                const{generateRoutes}=menu()
+                let rt = generateRoutes(store.menu)
+                await rt.forEach(item => {
+                    router.addRoute("home", item)
                 });
                 flag = false;
-                store.routes = [];
                 next({
                     ...to, // next({ ...to })的目的,是保证路由添加完了再进入页面 (可以理解为重进一次)
                     replace: true, // 重进一次, 不保留重复历史

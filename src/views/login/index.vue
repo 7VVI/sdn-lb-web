@@ -72,9 +72,8 @@
 <script lang="ts" setup>
 import {  reactive ,onMounted,ref} from "vue";
 import { useRouter } from "vue-router";
-import {APP_NAME, menu} from "@/enum";
+import {APP_NAME} from "@/enum";
 import {HttpManager} from "@/api";
-import {generateRouter, routerListFormat} from "@/utils/MenuToRouter";
 import {menuStore} from "@/stores/menuStore";
 const route = useRouter();
 const store=menuStore();
@@ -94,28 +93,23 @@ const formState = reactive<FormState>({
 });
 const onFinish = (values: any) => {
   console.log("Success:", values);
-  route.push({ path: "/home/main", replace: true });
+  route.push({ path: "/home", replace: true });
 };
 
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
 };
 
-let imageUrl=ref("");
-let verifyCodeUuid=ref(0);
+let imageUrl=ref();
+let verifyCodeUuid=ref();
 
 onMounted(async ()=>{
+  //获取验证码
   let verifyCodeUrl:API.BaseResponse<any> =await HttpManager.getVerifyCoe();
   imageUrl.value=verifyCodeUrl.data.imgBase64;
   verifyCodeUuid.value=verifyCodeUrl.data.uuid;
-  const res = await HttpManager.getMenu();
-  let Menus = routerListFormat(res.data);
-  localStorage.setItem("menu",JSON.stringify(Menus))
-  let newRoutes = generateRouter(Menus);
-  store.$patch(state=>{
-    state.menu=Menus;
-    state.routes=newRoutes;
-  })
+  //获取菜单
+  await store.getMenu()
 })
 </script>
   
