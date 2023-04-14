@@ -2,7 +2,14 @@
   <div class="context">
     <a-layout style="min-height: 100vh">
       <a-layout-sider v-model:collapsed="state.collapsed" collapsible>
-        <div class="logo">{{ APP_NAME }}</div>
+        <div class="top">
+        <div class="header">
+          <a href="/home/main">
+            <img src="~@/assets/img/PC.svg" class="logo" alt="logo">
+<!--            <span class="title">{{ defaultSettings.APP_NAME }}</span>-->
+          </a>
+        </div>
+        </div>
         <a-menu
             v-model:openKeys="openKeys"
             v-model:selectedKeys="selectedKeys"
@@ -16,11 +23,11 @@
                 <template #icon>
                   <i :class='`iconfont ${item.icon}`' :style="`color: ${item.iconColor}`"></i>
                 </template>
-                <router-link :to="item.path || item.link" >{{item.title}}</router-link>
+                <router-link :to="item.path || item.link">{{ item.title }}</router-link>
               </a-menu-item>
             </template>
             <template v-else>
-              <sub-menu :key="item.menuId" :menu-info="item" />
+              <sub-menu :key="item.menuId" :menu-info="item"/>
             </template>
           </template>
         </a-menu>
@@ -34,6 +41,7 @@
             align-items: center;
           "
         >
+
           <div class="header_context">
             <a-button
                 type="primary"
@@ -46,8 +54,8 @@
               "
                 @click="toggleCollapsed"
             >
-              <MenuUnfoldOutlined v-if="collapsed" />
-              <MenuFoldOutlined v-else />
+              <MenuUnfoldOutlined v-if="collapsed"/>
+              <MenuFoldOutlined v-else/>
             </a-button>
             <div class="empty"></div>
             <div class="header_context_right">
@@ -60,11 +68,10 @@
           </div>
         </a-layout-header>
         <a-layout-content>
-          <a-breadcrumb style="background-color: white;">
-            <span>面包屑</span>
-            <a-breadcrumb-item>User</a-breadcrumb-item>
-            <a-breadcrumb-item>Bill</a-breadcrumb-item>
-          </a-breadcrumb>
+<!--          <a-breadcrumb style="background-color: white;padding-left: 10px">-->
+<!--            <a-breadcrumb-item>User</a-breadcrumb-item>-->
+<!--            <a-breadcrumb-item>Bill</a-breadcrumb-item>-->
+<!--          </a-breadcrumb>-->
           <div
               class="home_context"
               :style="{ background: 'rgb(240, 242, 245)', minHeight: '360px'}"
@@ -81,8 +88,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, watch, onMounted,onBeforeMount } from "vue";
-import { APP_NAME } from "@/enum";
+import {ref, reactive, watch, onMounted, onBeforeMount} from "vue";
+import {defaultSettings} from "@/constants";
 import {menuStore} from "@/stores/menuStore";
 import {
   PieChartOutlined,
@@ -90,7 +97,6 @@ import {
   MenuUnfoldOutlined,
 } from "@ant-design/icons-vue";
 import SubMenu from "@/components/sider/SubMenu.vue";
-
 
 
 const state = reactive({
@@ -111,14 +117,14 @@ const toggleCollapsed = () => {
   state.collapsed = !state.collapsed;
   state.openKeys = state.collapsed ? [] : state.preOpenKeys;
 };
-const store=menuStore()
-let Menus:any=ref();
+const store = menuStore()
+let Menus: any = ref();
 
 onBeforeMount(() => {
-  Menus=store.menu
+  Menus = store.menu
 });
 
-onMounted(()=>{
+onMounted(() => {
 
 })
 
@@ -126,9 +132,20 @@ onMounted(()=>{
 </script>
 
 <style lang="css">
+
+#root, body, html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
+}
+
+.ant-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
 }
 
 .context {
@@ -146,15 +163,17 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
-.logo {
-  height: 32px;
-  margin: 16px;
-  font-weight: bolder;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(233, 239, 236, 0.5);
-}
+/*.logo {*/
+/*  height: 32px;*/
+/*  margin: 16px;*/
+/*  font-weight: bolder;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  background: rgba(27, 127, 222, 0.5);*/
+/*  overflow: hidden;*/
+/*}*/
+
 
 .site-layout {
   background: #fff;
@@ -194,7 +213,7 @@ body {
   flex: 1;
 }
 
-.home_context{
+.home_context {
   padding: 0;
   margin: 10px;
   box-sizing: border-box;
@@ -202,6 +221,33 @@ body {
 
 .ant-layout-footer {
   padding: 0;
+}
+
+.header {
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  /*background-color: #2af598;*/
+}
+
+.logo {
+  height: 44px;
+  vertical-align: top;
+  margin-right: 16px;
+  border-style: none;
+}
+
+.top {
+  text-align: center;
+}
+
+.title {
+  font-size: 33px;
+  color: rgba(246, 237, 237, 0.85);
+  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  position: relative;
+  top: 2px;
 }
 </style>
       

@@ -2,7 +2,7 @@
   <div class="context">
     <div class="login_container">
       <div class="app_name">
-        <span class="project_name">{{ APP_NAME }}</span>
+        <span class="project_name">{{ defaultSettings.APP_NAME }}</span>
       </div>
       <div class="login_form">
         <div class="login_from_context">
@@ -72,7 +72,7 @@
 <script lang="ts" setup>
 import {  reactive ,onMounted,ref} from "vue";
 import { useRouter } from "vue-router";
-import {APP_NAME} from "@/enum";
+import {defaultSettings} from "@/constants";
 import {HttpManager} from "@/api";
 import {menuStore} from "@/stores/menuStore";
 const route = useRouter();

@@ -4,7 +4,10 @@ import BaseResponse = API.BaseResponse;
 
 const HttpManager = {
 
-    // 用户登录
+    /**
+     * 用户登录
+     * @param body
+     */
     login(body: LoginParams): Promise<BaseResponse<Record<string, string>>> {
         return request({
             url: "/admin/login",
@@ -18,11 +21,14 @@ const HttpManager = {
      */
     getMenu(): Promise<BaseResponse<any>> {
         return request({
-            url: "/user/getAllMenu",
+            url: "/menuManger/listAll",
             method: "get"
         })
     },
 
+    /**
+     * 验证码获取
+     */
     getVerifyCoe(): Promise<BaseResponse<any>>{
         return request({
             url: "/user/verifyCode",
@@ -30,6 +36,9 @@ const HttpManager = {
         })
     },
 
+    /**
+     * 获取文件流
+     */
     getFileContent(){
         return request({
             url:"/file",

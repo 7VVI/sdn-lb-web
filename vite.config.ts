@@ -13,7 +13,7 @@ export default defineConfig({
     requireTransform({
       fileRegex: /.js$|.vue$/
     }),
-    Components({ resolvers: [AntDesignVueResolver(),NaiveUiResolver()]}),
+    Components({ resolvers: [AntDesignVueResolver({ importStyle: 'less' }),NaiveUiResolver()]}),
     AutoImport({
       imports: [
         'vue',
@@ -33,5 +33,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
- 
+  css: {
+    preprocessorOptions: {
+      less: {
+        modifyVars: {
+          hack: 'true; @import "@/assets/styles/theme.less"'
+        },
+        javascriptEnabled: true
+      }
+    }
+  },
 })
