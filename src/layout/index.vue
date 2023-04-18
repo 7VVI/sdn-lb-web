@@ -1,21 +1,14 @@
 <template>
   <div class="context">
     <a-layout style="min-height: 100vh">
-      <a-layout-sider v-model:collapsed="state.collapsed" collapsible>
-        <div class="top">
-        <div class="header">
-          <a href="/home/main">
-            <img src="~@/assets/img/PC.svg" class="logo" alt="logo">
-<!--            <span class="title">{{ defaultSettings.APP_NAME }}</span>-->
-          </a>
-        </div>
-        </div>
+      <a-layout-sider v-model:collapsed="state.collapsed" :trigger="null" collapsible>
+        <LogoZ :collapsed="state.collapsed"/>
         <a-menu
-            v-model:openKeys="openKeys"
-            v-model:selectedKeys="selectedKeys"
+            v-model:openKeys="state.openKeys"
+            v-model:selectedKeys="state.selectedKeys"
             mode="inline"
             theme="dark"
-            :inline-collapsed="collapsed"
+            :inline-collapsed="state.collapsed"
         >
           <template v-for="item in Menus" :key="item.menuId">
             <template v-if="!item.children">
@@ -54,7 +47,7 @@
               "
                 @click="toggleCollapsed"
             >
-              <MenuUnfoldOutlined v-if="collapsed"/>
+              <MenuUnfoldOutlined v-if="state.collapsed"/>
               <MenuFoldOutlined v-else/>
             </a-button>
             <div class="empty"></div>
@@ -68,10 +61,10 @@
           </div>
         </a-layout-header>
         <a-layout-content>
-<!--          <a-breadcrumb style="background-color: white;padding-left: 10px">-->
-<!--            <a-breadcrumb-item>User</a-breadcrumb-item>-->
-<!--            <a-breadcrumb-item>Bill</a-breadcrumb-item>-->
-<!--          </a-breadcrumb>-->
+          <!--          <a-breadcrumb style="background-color: white;padding-left: 10px">-->
+          <!--            <a-breadcrumb-item>User</a-breadcrumb-item>-->
+          <!--            <a-breadcrumb-item>Bill</a-breadcrumb-item>-->
+          <!--          </a-breadcrumb>-->
           <div
               class="home_context"
               :style="{ background: 'rgb(240, 242, 245)', minHeight: '360px'}"
@@ -97,6 +90,7 @@ import {
   MenuUnfoldOutlined,
 } from "@ant-design/icons-vue";
 import SubMenu from "@/components/sider/SubMenu.vue";
+import LogoZ from "@/layout/LogoZ.vue";
 
 
 const state = reactive({
@@ -131,7 +125,7 @@ onMounted(() => {
 
 </script>
 
-<style lang="css">
+<style lang="less">
 
 #root, body, html {
   height: 100%;
@@ -155,6 +149,37 @@ body {
   margin: 0;
   padding: 0;
   background-color: beige;
+  .header_context {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+  .empty {
+    flex: 1;
+  }
+
+  .header_context_right {
+    position: relative;
+    right: 1%;
+  }
+
+  .avatar {
+    margin-left: 10px;
+  }
+
+
+  .setting {
+    flex: 1;
+  }
+
+  .home_context {
+    padding: 0;
+    margin: 10px;
+    box-sizing: border-box;
+  }
 }
 
 #components-layout-demo-side {
@@ -162,18 +187,6 @@ body {
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
 }
-
-/*.logo {*/
-/*  height: 32px;*/
-/*  margin: 16px;*/
-/*  font-weight: bolder;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  background: rgba(27, 127, 222, 0.5);*/
-/*  overflow: hidden;*/
-/*}*/
-
 
 .site-layout {
   background: #fff;
@@ -187,67 +200,8 @@ body {
   background: #141414;
 }
 
-.header_context {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-content: center;
-  align-items: center;
-}
-
-.empty {
-  flex: 1;
-}
-
-.header_context_right {
-  position: relative;
-  right: 1%;
-}
-
-.avatar {
-  margin-left: 10px;
-}
-
-.setting {
-  flex: 1;
-}
-
-.home_context {
-  padding: 0;
-  margin: 10px;
-  box-sizing: border-box;
-}
-
 .ant-layout-footer {
   padding: 0;
-}
-
-.header {
-  height: 44px;
-  line-height: 44px;
-  text-align: center;
-  /*background-color: #2af598;*/
-}
-
-.logo {
-  height: 44px;
-  vertical-align: top;
-  margin-right: 16px;
-  border-style: none;
-}
-
-.top {
-  text-align: center;
-}
-
-.title {
-  font-size: 33px;
-  color: rgba(246, 237, 237, 0.85);
-  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  position: relative;
-  top: 2px;
 }
 </style>
       

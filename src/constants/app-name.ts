@@ -1,7 +1,8 @@
 // export  const APP_NAME='负载均衡';
+import logo from "@/assets/background/logo.png"
 
 const defaultSettings={
-    LOGO:"",
+    LOGO:logo,
     APP_NAME:"负载均衡"
 }
 

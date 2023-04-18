@@ -93,7 +93,7 @@ const formState = reactive<FormState>({
 });
 const onFinish = (values: any) => {
   console.log("Success:", values);
-  route.push({ path: "/home", replace: true });
+  route.push({ path: "/home/main", replace: true });
 };
 
 const onFinishFailed = (errorInfo: any) => {
