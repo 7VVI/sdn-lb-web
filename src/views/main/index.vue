@@ -19,27 +19,13 @@
         </div>
       </div>
     </div>
-
-    <div class="context_right">
-     <div class="service_time">
-
-     </div>
-      <div class="context_right_center">
-        时间
-      </div>
-      <div class="context_right_footer">
-        footer
-      </div>
-    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref,provide, reactive, computed,watch, onMounted,onBeforeMount } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import * as echarts from 'echarts';
 import { Area } from '@antv/g2plot';
-import ServiceTime from "@/components/system/ServiceTime.vue";
-
 
 declare var require :any;
 
@@ -211,79 +197,73 @@ const data = [
   }
 ];
 
-let   tableHeight= 128 // 表格总高度为四行的高度，即 32 x 4 = 128
+let  tableHeight= 128 // 表格总高度为四行的高度，即 32 x 4 = 128
 
 </script>
 
 <style lang="less" scoped>
+
+@--el-border-color-light:1px;
+@--el-background-color:white;
+@--el-content-background-color:rgb(240, 242, 245);
+
 .main {
-  display: flex;
   margin-top: 20px;
 }
 
 .context {
   height: 100%;
   display: flex;
-  flex: 3.5;
   flex-direction: column;
   align-content: flex-start;
   justify-content: space-between;
-  background-color: rgb(240, 242, 245);
-}
+  background-color: var(--el-content-background-color);
 
-.context_right {
-  background-color: cornflowerblue;
-  flex: 1  1 auto;
-  //height: 800px;
-}
+  .card {
+    display: flex;
+    justify-content: space-between;
+  }
 
-.table_trend {
-  //background-color: #ad45e3;
-  background-color: white;
-  height: 400px;
-  margin: 20px 20px 0 0;
-  border: 0px solid gray;
-  outline: 2px solid #ccc;
-  border-radius: 1%;
-  box-shadow: 0 0 0 6px #f5f1f1;
-}
+  .table_trend {
+    background-color: var(--el-background-color);
+    height: 400px;
+    margin: 20px 20px 0 0;
+    border: 1px solid var(--el-border-color-light);
+    border-radius: 4px;
+    box-shadow: 0 0 6px #0003;
+  }
 
-.card {
-  display: flex;
-  justify-content: space-between;
-}
+  .warning_info {
+    height: 290px;
+    display: flex;
+    margin:20px 20px 0 0;
 
-.warning_info {
-  height: 300px;
-  display: flex;
-  margin:20px 20px 0 0;
-}
+    .warning_info_left {
+      flex: 1;
+      background-color: var(--el-background-color);
+      margin-right: 10px;
+      border: 1px solid var(--el-border-color-light);
+      border-radius: 4px;
+      box-shadow: 0 0 6px #0003;
+      padding: 10px;
+    }
 
-.warning_info_left {
-  flex: 1;
-  background-color: white;
-  margin-right: 10px;
-  border: 0px solid gray;
-  outline: 2px solid #ccc;
-  border-radius: 1%;
-  box-shadow: 0 0 0 6px #f5f1f1;
-  padding: 10px;
-}
+    .warning_info_right {
+      flex: 1;
+      background-color: var(--el-background-color);
+      margin-left: 10px;
+      padding: 5px 0 10px 0;
+      border: 1px solid var(--el-border-color-light);
+      border-radius: 4px;
+      box-shadow: 0 0 6px #0003;
+    }
 
-.warning_info_right {
-  flex: 1;
-  background-color: white;
-  margin-left: 10px;
-  padding: 5px 0 10px 0;
-  border: 0px solid gray;
-  outline: 2px solid #ccc;
-  border-radius: 1%;
-  box-shadow: 0 0 0 6px #f5f1f1;
-  padding: 10px;
-}
-.chart{
-  width: 100%;
-  height: 100%;
+    .chart{
+      width: 100%;
+      height: 100%;
+    }
+  }
+
 }
 
 #components-table-demo-size h4 {
@@ -291,20 +271,4 @@ let   tableHeight= 128 // 表格总高度为四行的高度，即 32 x 4 = 128
   margin: 16px;
 }
 
-.service_time{
-  background-color: #b490ca;
-  height: 250px;
-  margin-bottom: 20px;
-}
-
-.context_right_center{
-  background-color: #2af598;
-  height: 300px;
-  margin-bottom: 20px;
-}
-
-.context_right_footer{
-  background-color: aqua;
-  height: 250px;
-}
 </style>
